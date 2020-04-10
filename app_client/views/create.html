@@ -1,0 +1,93 @@
+
+<ng-include src="'views/mainMenu.html'"></ng-include>
+<h2>{{ vm.title }}</h2>
+
+<form ng-class="(vm.formWasValidated) ? 'was-validated': ''" class="needs-validation" ng-submit="vm.sendForm()" novalidate>
+        <div class="input mb-2">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="material">Материал</label>
+            </div>
+            <select ng-class="(vm.formModel.material.valid) ? '': 'is-invalid'"  ng-model="vm.formModel.material.value"
+                    type="text" class="custom-select" id="material" ng-keyup="vm.validate()">
+                <option value="Шерсть">Шерсть</option>
+                <option value="Полиэстр">Полиэстр</option>
+                <option value="Кашемир">Кашемир</option>
+                <option value="Смесовая ткань">Смесовая ткань</option>
+            </select>
+        </div>
+    <br>
+        <div class="input mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="mod">Силуэт</label>
+            </div>
+            <select ng-class="(vm.formModel.mod.valid) ? '': 'is-invalid'" ng-model="vm.formModel.mod.value"
+                    type="text" class="form-control" id="mod" ng-keyup="vm.validate()">
+                <option value="Прямой">Прямой</option>
+                <option value="Полуприталенный">Полуприталенный</option>
+                <option value="Приталенный">Приталенный</option>
+            </select>
+
+            <div ng-class="(vm.formModel.mod.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+                {{vm.formModel.mod.infoText}}
+            </div>
+        </div>
+    <br>
+
+
+        <div class="input mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="color">Цвет</label>
+            </div>
+            <select ng-class="(vm.formModel.color.valid) ? '': 'is-invalid'" ng-model="vm.formModel.color.value"
+                    ng-keyup="vm.validate()" type="text" class="custom-select" id="color">
+                <option value="Синий">Синий</option>
+                <option value="серый">серый</option>
+                <option value="Черный">Черный</option>
+                <option value="Бордовый">Бордовый</option>
+                <option value="Белый">Белый</option>
+            </select>
+        </div>
+    <br>
+    <div class="input mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="country">Страна производитель</label>
+            </div>
+            <select ng-class="(vm.formModel.country.valid) ? '': 'is-invalid'" ng-model="vm.formModel.country.value"
+                    ng-keyup="vm.validate()" type="text" class="form-control" id="country" >
+                <option value="Италия">Италия</option>
+                <option value="Германия">Германия</option>
+                <option value="Франция">Франция</option>
+            </select>
+
+            <div ng-class="(vm.formModel.country.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+                {{vm.formModel.country.infoText}}
+            </div>
+        </div>
+
+    <br>
+    <div class="input mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="pattern">Адрес доставки</label>
+            </div>
+            <input ng-class="(vm.formModel.pattern.valid) ? '': 'is-invalid'" ng-model="vm.formModel.pattern.value"
+                   ng-keyup="vm.validate()" type="text" class="form-control" id="pattern" value="">
+            <div ng-class="(vm.formModel.pattern.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+                {{vm.formModel.pattern.infoText}}
+            </div>
+        </div>
+    <br>
+        <div class="input mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="order-date">Дата оформления заказа</label>
+            </div>
+            <input ng-model="vm.formModel.orderdate.value" type="date" class="form-control" id="order-date">
+<!--            <div class="valid-feedback">-->
+<!--                Looks good!-->
+<!--            </div>-->
+        </div>
+    <button ng-disabled="!vm.formWasValidated" class="btn btn-primary" type="submit">Готово</button>
+</form>
+
+<div ng-show="vm.error.length" class="alert alert-danger" role="alert">
+    {{vm.error}}
+</div>
